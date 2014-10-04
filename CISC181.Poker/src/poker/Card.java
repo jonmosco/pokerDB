@@ -5,6 +5,7 @@ import java.util.Comparator;
 public final class Card {
 	private eSuit Suit;
 	private eRank Rank;
+	private boolean Wild = false;
 	
 	/**
 	 * Keep the no-arg constructor private.  I don't want 'Card' created without attributes.
@@ -21,8 +22,15 @@ public final class Card {
 	public Card(eSuit suit, eRank rank) {
 		Suit = suit; 
 		Rank = rank; 
+		this.Wild = false;
 	}
 
+	public Card(eSuit suit, eRank rank, boolean Wild) {
+		Suit = suit; 
+		Rank = rank; 
+		this.Wild = Wild;
+	}
+	
 	/**
 	 * Getter for Rank
 	 * @return
@@ -37,6 +45,16 @@ public final class Card {
 	 */
 	public eSuit getSuit() {
 		return this.Suit;
+	}
+	
+	public boolean getWild()
+	{
+		return this.Wild;
+	}
+	
+	public void setWild()
+	{
+		this.Wild = true;
 	}
 
 	/**

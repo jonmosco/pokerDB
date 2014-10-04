@@ -19,13 +19,48 @@ public class Deck {
 				MakingDeck.add(NewCard);
 			}
 		}
-		
 		//	Set the instance variable
 		cards = MakingDeck;
+		ShuffleCards();
+
+	}
+	
+	public Deck(int NbrOfJokers) {
+
+		this();
 		
+		for (short i = 1; i <= NbrOfJokers; i++) {
+			cards.add(new Card(eSuit.JOKER,eRank.JOKER));
+		}
+		ShuffleCards();
+	}
+	
+	public Deck(int NbrOfJokers, ArrayList<Card> WildCards) {
+
+		this();
+		
+		for (short i = 1; i <= NbrOfJokers; i++) {
+			cards.add(new Card(eSuit.JOKER,eRank.JOKER));
+		}
+		
+		for (Card deckCard : cards)
+		{
+			for (Card WildCard: WildCards)
+			{
+				if ((deckCard.getSuit() == WildCard.getSuit()) &&
+						(deckCard.getRank() == WildCard.getRank()))
+						{
+							deckCard.setWild();
+						}					
+			}
+		}
+		ShuffleCards();
+	}
+	
+	private void ShuffleCards()
+	{
 		//	Shuffle the cards
 		Collections.shuffle(cards);
-		
 	}
 
 	public Card drawFromDeck() {
@@ -38,5 +73,10 @@ public class Deck {
 	public int getTotalCards() {
 		// Returns the total number of cards still in the deck
 		return cards.size();
+	}
+	
+	public ArrayList<Card> getCards()
+	{
+		return this.cards;
 	}
 }
