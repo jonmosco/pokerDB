@@ -37,11 +37,8 @@ public class Deck {
 	
 	public Deck(int NbrOfJokers, ArrayList<Card> WildCards) {
 
-		this();
+		this(NbrOfJokers);
 		
-		for (short i = 1; i <= NbrOfJokers; i++) {
-			cards.add(new Card(eSuit.JOKER,eRank.JOKER));
-		}
 		
 		for (Card deckCard : cards)
 		{

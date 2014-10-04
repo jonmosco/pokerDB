@@ -9,10 +9,11 @@ public class Hand {
 	private ArrayList<Card> BestCardsInHand;
 
 	private int HandStrength;
+	private int Natural = 1;	
 	private int HiHand;
 	private int LoHand;
 	private int Kicker;
-	private int Natural = 1;
+
 	private boolean bScored = false;
 
 	private boolean Flush;
