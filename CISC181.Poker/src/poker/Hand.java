@@ -3,8 +3,10 @@ package poker;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.UUID;
 
 public class Hand {
+	private UUID playerID;
 	private ArrayList<Card> CardsInHand;
 	private ArrayList<Card> BestCardsInHand;
 
@@ -21,6 +23,24 @@ public class Hand {
 	private boolean Ace;
 	private static Deck dJoker = new Deck();
 
+	public Hand()
+	{
+		
+	}
+	public void  AddCardToHand(Card c)
+	{
+		if (this.CardsInHand == null)
+		{
+			CardsInHand = new ArrayList<Card>();
+		}
+		this.CardsInHand.add(c);
+	}
+	
+	public Card  GetCardFromHand(int location)
+	{
+		return CardsInHand.get(location);
+	}
+	
 	public Hand(Deck d) {
 		ArrayList<Card> Import = new ArrayList<Card>();
 		for (int x = 0; x < 5; x++) {
@@ -32,7 +52,7 @@ public class Hand {
 
 	}
 
-	private void HandleJokerWilds() {
+	public void HandleJokerWilds() {
 		// Generate all possible combinations of hands (joker logic)
 		ArrayList<Hand> PlayersHand = new ArrayList<Hand>();
 		PlayersHand.add(this);
@@ -107,6 +127,14 @@ public class Hand {
 		return BestCardsInHand;
 	}
 
+	public void setPlayerID(UUID playerID)
+	{
+		this.playerID = playerID;
+	}
+	public UUID getPlayerID()
+	{
+		return playerID;
+	}
 	public void setBestHand(ArrayList<Card> BestHand) {
 		this.BestCardsInHand = BestHand;
 	}
