@@ -1,4 +1,4 @@
-package poker;
+package pokerBase;
 
 import java.util.Comparator;
 import javax.xml.bind.annotation.XmlElement;

@@ -1,4 +1,4 @@
-package poker;
+package pokerBase;
 import java.util.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;

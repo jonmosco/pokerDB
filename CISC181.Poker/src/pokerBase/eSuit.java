@@ -1,4 +1,4 @@
-package poker;
+package pokerBase;
 
 
 public enum eSuit {
