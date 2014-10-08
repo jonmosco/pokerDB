@@ -12,7 +12,7 @@ public class Table {
 	@XmlElement
 	private UUID TableID;
 	@XmlElement
-	private ArrayList<Game> TableGame = new ArrayList<Game>();
+	private ArrayList<GamePlay> TableGame = new ArrayList<GamePlay>();
 	@XmlElement (name = "TablePlayerID")
 	private ArrayList<Player> TablePlayers = new ArrayList<Player>();
 	
@@ -26,17 +26,17 @@ public class Table {
 		return this.TableID;
 	}
 	
-	public void AddGame(Game g)
+	public void AddGame(GamePlay g)
 	{
 		TableGame.add(g);
 	}
 	
-	public void RemoveGame(Game g)
+	public void RemoveGame(GamePlay g)
 	{
 		TableGame.remove(g);
 	}
 	
-	public ArrayList<Game> GetGames()
+	public ArrayList<GamePlay> GetGames()
 	{
 		return TableGame;
 	}

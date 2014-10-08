@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-public class Game {
+public class GamePlay {
 
 	
 	@XmlElement
@@ -23,7 +23,7 @@ public class Game {
 	@XmlElement
 	private ArrayList<Card> WildCards = new ArrayList<Card>();
 	
-	public Game(Rule rle)
+	public GamePlay(Rule rle)
 	{
 		this.GameID = UUID.randomUUID();
 		

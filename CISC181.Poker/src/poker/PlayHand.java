@@ -59,7 +59,7 @@ public class PlayHand {
 		Rule rle = new Rule(eGame.FiveStud);
 		
 		//	Game is created (tables have players, players play games, etc)
-		Game gme = new Game(rle);
+		GamePlay gme = new GamePlay(rle);
 		tbl.AddGame(gme);
 		
 		//	Deck is created using game's ruleset
