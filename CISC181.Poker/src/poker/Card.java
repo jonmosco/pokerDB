@@ -1,10 +1,14 @@
 package poker;
 
 import java.util.Comparator;
+import javax.xml.bind.annotation.XmlElement;
 
 public final class Card {
+	@XmlElement
 	private eSuit Suit;
+	@XmlElement
 	private eRank Rank;
+	@XmlElement
 	private boolean Wild = false;
 	
 	/**

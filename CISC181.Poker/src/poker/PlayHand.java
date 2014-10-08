@@ -3,8 +3,15 @@ package poker;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
+import java.io.StringReader;
+import java.io.StringWriter;
+
 public class PlayHand {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		//PlayFullHand();
 		PlayFiveCardManualDeal();
@@ -31,23 +38,45 @@ public class PlayHand {
 		Hand hWild = new Hand(dWild);
 	}
 
-	private static void PlayFiveCardManualDeal() {
-		int iPlayers = 5;
-
-		Deck dStud = new Deck(10);
-		ArrayList<Player> players = new ArrayList<Player>();
-
-		//	Add the players, give them empty hands
-		for (int i = 0; i < iPlayers; i++) {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private static void PlayFiveCardManualDeal() throws Exception {
+		
+		//	Table is created
+		Table tbl = new Table();
+		
+		//	Rule set is called (A given game has a rule set)
+		Rule rle = new Rule(eGame.FiveStud);
+		
+		//	Game is created (tables have players, players play games, etc)
+		Game gme = new Game(rle);
+		tbl.AddGame(gme);
+		
+		//	Deck is created using game's ruleset
+		Deck dStud = new Deck(gme.GetNumberOfJokers());
+		
+		//	Add the players to Table and Game, give them empty hands
+		for (int i = 0; i < gme.GetMaxNumberOfPlayers(); i++) {
 			Player p = new Player();
 			p.SetPlayerNbr(i+1);			
-			p.SetHand(new Hand());
-			players.add(p);
+			tbl.AddTablePlayer(p);
+			gme.AddGamePlayer(p);
+			p.SetHand(new Hand());			
 		}
 	
 		//	Five Card in each hand
-		for (int i = 0; i < 5; i++) {
-			for (Player p: players)
+		for (int i = 0; i < gme.GetNumberOfCards(); i++) {
+			for (Player p: gme.GetGamePlayers())
 			{
 				Hand h = p.GetHand();
 				h.setPlayerID(p.GetPlayerID());
@@ -57,16 +86,16 @@ public class PlayHand {
 		}
 		
 		//	Handle jokers
-		for (Player p: players)
+		for (Player p: gme.GetGamePlayers())
 		{
 			Hand h = p.GetHand();
 			h.HandleJokerWilds();
 			p.SetHand(h);
 		}		
 		
-		//	Collect All Hands
+		//	Collect All Hands in a Game
 		ArrayList<Hand> AllHands = new  ArrayList<Hand>();
-		for (Player p: players)
+		for (Player p: gme.GetGamePlayers())
 		{
 			AllHands.add(p.GetHand());
 		}
@@ -84,28 +113,80 @@ public class PlayHand {
 			System.out.print(c.getSuit());
 			System.out.print("      ");
 		}
+		
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		
+		
+		
+		
+        //Write it
+        JAXBContext ctx = JAXBContext.newInstance(Table.class);
+
+        Marshaller m = ctx.createMarshaller();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        StringWriter sw = new StringWriter();
+        m.marshal(tbl, sw);
+        sw.close();
+        System.out.println(sw.toString());
+
+		
+        //Write it
+        JAXBContext ctxDeck = JAXBContext.newInstance(Deck.class);
+
+        Marshaller mDeck = ctxDeck.createMarshaller();
+        mDeck.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+        StringWriter swDeck = new StringWriter();
+        mDeck.marshal(dStud, swDeck);
+        swDeck.close();
+        System.out.println(swDeck.toString());
+
 
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private static void TexasHoldEm() {
+		
+		Table tbl = new Table();
 		int iPlayers = 5;
 
 		Deck dStud = new Deck();
-		ArrayList<Player> players = new ArrayList<Player>();
-
+		
 		//	Add the players, give them empty hands
 		for (int i = 0; i < iPlayers; i++) {
 			Player p = new Player();
 			p.SetPlayerNbr(i+1);			
 			p.SetHand(new Hand());
-			players.add(p);
+			tbl.AddTablePlayer(p);
 		}
 		
 		
 		//	Two Card in each hand
 		for (int i = 0; i < 2; i++) {
-			for (Player p: players)
+			for (Player p: tbl.GetTablePlayers())
 			{
 				Hand h = p.GetHand();
 				h.setPlayerID(p.GetPlayerID());
@@ -126,7 +207,7 @@ public class PlayHand {
 //		Hand BestCommunityHand = Hand.EvalHand(Community);
 		
 		
-		for (Player p: players)
+		for (Player p: tbl.GetTablePlayers())
 		{	Hand playerHand = new Hand();
 			if (Community.size() == 3)
 			{

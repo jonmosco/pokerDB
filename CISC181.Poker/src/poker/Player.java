@@ -1,24 +1,25 @@
 package poker;
 import java.util.*;
-
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 public class Player {
 	
+	@XmlElement
 	private UUID PlayerID;
+	@XmlElement
 	private int PlayerNbr;
+	@XmlElement
 	private Hand PlayerHand;
-	
-	
-	public UUID GetPlayerID()
-	{
-		return this.PlayerID;
-		
-	}
 	
 	public Player()
 	{
-		this.PlayerID = UUID.randomUUID();
-				
+		this.PlayerID = UUID.randomUUID();				
+	}
+	
+	public UUID GetPlayerID()
+	{
+		return this.PlayerID;		
 	}
 	
 	public void SetHand(Hand h)

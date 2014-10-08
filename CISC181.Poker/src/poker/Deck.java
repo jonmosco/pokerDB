@@ -2,9 +2,14 @@ package poker;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Deck {
+	
+	@XmlElement (name="Remaining Card")
 	private ArrayList<Card> cards;
 
 	public Deck() {

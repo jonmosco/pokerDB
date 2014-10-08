@@ -4,16 +4,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.UUID;
+import javax.xml.bind.annotation.XmlElement;
 
 public class Hand {
 	private UUID playerID;
+	@XmlElement
 	private ArrayList<Card> CardsInHand;
 	private ArrayList<Card> BestCardsInHand;
 
+	@XmlElement
 	private int HandStrength;
-	private int Natural = 1;	
+	@XmlElement
+	private int Natural = 1;
+	@XmlElement
 	private int HiHand;
+	@XmlElement
 	private int LoHand;
+	@XmlElement
 	private int Kicker;
 
 	private boolean bScored = false;
