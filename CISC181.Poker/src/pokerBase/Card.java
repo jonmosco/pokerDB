@@ -10,6 +10,9 @@ public final class Card {
 	private eRank Rank;
 	@XmlElement
 	private boolean Wild = false;
+	@XmlElement
+	private String CardImg;
+	
 	
 	/**
 	 * Keep the no-arg constructor private.  I don't want 'Card' created without attributes.
@@ -59,6 +62,11 @@ public final class Card {
 	public void setWild()
 	{
 		this.Wild = true;
+	}
+	
+	public String getCardImg()
+	{
+		return this.CardImg;
 	}
 
 	/**

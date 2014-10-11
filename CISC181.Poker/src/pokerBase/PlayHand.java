@@ -67,7 +67,7 @@ public class PlayHand {
 		
 		//	Add the players to Table and Game, give them empty hands
 		for (int i = 0; i < gme.GetMaxNumberOfPlayers(); i++) {
-			Player p = new Player();
+			Player p = new Player("Bob");
 			p.SetPlayerNbr(i+1);			
 			tbl.AddTablePlayer(p);
 			gme.AddGamePlayer(p);
@@ -177,7 +177,7 @@ public class PlayHand {
 		
 		//	Add the players, give them empty hands
 		for (int i = 0; i < iPlayers; i++) {
-			Player p = new Player();
+			Player p = new Player("Joe");
 			p.SetPlayerNbr(i+1);			
 			p.SetHand(new Hand());
 			tbl.AddTablePlayer(p);

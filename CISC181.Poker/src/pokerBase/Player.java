@@ -10,11 +10,14 @@ public class Player {
 	@XmlElement
 	private int PlayerNbr;
 	@XmlElement
+	private String PlayerName;
+	@XmlElement
 	private Hand PlayerHand;
 	
-	public Player()
+	public Player(String PlayerName)
 	{
-		this.PlayerID = UUID.randomUUID();				
+		this.PlayerID = UUID.randomUUID();
+		this.PlayerName = PlayerName;
 	}
 	
 	public UUID GetPlayerID()
@@ -40,5 +43,15 @@ public class Player {
 	public int GetPlayerNbr()
 	{
 		return this.PlayerNbr;
+	}
+	
+	public void SetPlayerName(String PlayerName)
+	{
+		this.PlayerName = PlayerName;
+	}
+	
+	public String GetPlayerName()
+	{
+		return this.PlayerName;
 	}
 }
