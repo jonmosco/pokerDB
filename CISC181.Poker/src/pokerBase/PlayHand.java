@@ -7,6 +7,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import pokerEnums.eGame;
+import pokerEnums.eRank;
+import pokerEnums.eSuit;
+
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -29,10 +33,10 @@ public class PlayHand {
 
 		// Four Wilds five card
 		ArrayList<Card> Wilds = new ArrayList<Card>();
-		Wilds.add(new Card(eSuit.CLUBS, eRank.TWO));
-		Wilds.add(new Card(eSuit.DIAMONDS, eRank.TWO));
-		Wilds.add(new Card(eSuit.SPADES, eRank.TWO));
-		Wilds.add(new Card(eSuit.HEARTS, eRank.TWO));
+		Wilds.add(new Card(eSuit.CLUBS, eRank.TWO,27));
+		Wilds.add(new Card(eSuit.DIAMONDS, eRank.TWO,40));
+		Wilds.add(new Card(eSuit.SPADES, eRank.TWO,14));
+		Wilds.add(new Card(eSuit.HEARTS, eRank.TWO,1));
 
 		Deck dWild = new Deck(0, Wilds);
 		Hand hWild = new Hand(dWild);
@@ -67,7 +71,7 @@ public class PlayHand {
 		
 		//	Add the players to Table and Game, give them empty hands
 		for (int i = 0; i < gme.GetMaxNumberOfPlayers(); i++) {
-			Player p = new Player("Bob");
+			Player p = new Player("Bob", null);
 			p.SetPlayerNbr(i+1);			
 			tbl.AddTablePlayer(p);
 			gme.AddGamePlayer(p);
@@ -177,7 +181,7 @@ public class PlayHand {
 		
 		//	Add the players, give them empty hands
 		for (int i = 0; i < iPlayers; i++) {
-			Player p = new Player("Joe");
+			Player p = new Player("Joe",null);
 			p.SetPlayerNbr(i+1);			
 			p.SetHand(new Hand());
 			tbl.AddTablePlayer(p);

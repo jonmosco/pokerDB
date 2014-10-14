@@ -6,6 +6,9 @@ import java.util.Collections;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import pokerEnums.eRank;
+import pokerEnums.eSuit;
+
 @XmlRootElement
 public class Deck {
 	
@@ -20,7 +23,7 @@ public class Deck {
 			eSuit SuitValue = eSuit.values()[i];			
 			for (short j = 0; j <= 12; j++) {
 				eRank RankValue = eRank.values()[j];				
-				Card NewCard = new Card(SuitValue,RankValue);
+				Card NewCard = new Card(SuitValue,RankValue, (13 * i) + j+1);
 				MakingDeck.add(NewCard);
 			}
 		}
@@ -35,7 +38,7 @@ public class Deck {
 		this();
 		
 		for (short i = 1; i <= NbrOfJokers; i++) {
-			cards.add(new Card(eSuit.JOKER,eRank.JOKER));
+			cards.add(new Card(eSuit.JOKER,eRank.JOKER,53));
 		}
 		ShuffleCards();
 	}

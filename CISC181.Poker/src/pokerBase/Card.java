@@ -1,7 +1,11 @@
 package pokerBase;
 
 import java.util.Comparator;
+
 import javax.xml.bind.annotation.XmlElement;
+
+import pokerEnums.eRank;
+import pokerEnums.eSuit;
 
 public final class Card {
 	@XmlElement
@@ -26,10 +30,12 @@ public final class Card {
 	 * @param suit
 	 * @param rank
 	 */
-	public Card(eSuit suit, eRank rank) {
+	public Card(eSuit suit, eRank rank, int CardNbr ) {
 		Suit = suit; 
 		Rank = rank; 
 		this.Wild = false;
+		this.CardImg = CardNbr + ".png";
+		
 	}
 
 	public Card(eSuit suit, eRank rank, boolean Wild) {

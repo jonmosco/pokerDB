@@ -16,6 +16,7 @@ public class Table {
 	@XmlElement (name = "TablePlayerID")
 	private ArrayList<Player> TablePlayers = new ArrayList<Player>();
 	
+	
 	public Table()
 	{
 		this.TableID = UUID.randomUUID();
@@ -55,4 +56,37 @@ public class Table {
 	{
 		return TablePlayers;
 	}
+	
+    /**
+     * Main game loop.
+     */
+//    public void run() {
+//        for (Player player : TablePlayers) {
+//            player.getClient().joinedTable(TablePlayers);
+//        }
+//
+//        while (true) {
+//            int noOfActivePlayers = 0;
+//            for (Player player : TablePlayers) {
+//
+//                    noOfActivePlayers++;
+//            }
+//            if (noOfActivePlayers > 1) {
+//                playHand();
+//            } else {
+//                break;
+//            }
+//        }
+//        
+//        // Game over.
+//        board.clear();
+//        notifyBoardUpdated();
+//        for (Player player : TablePlayers) {
+//            player.resetHand();
+//        }
+//        notifyPlayersUpdated(false);
+//        notifyMessage("Game over.");
+    
+    
+    
 }

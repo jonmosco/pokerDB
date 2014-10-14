@@ -1,4 +1,4 @@
-package pokerBase;
+package pokerEnums;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,8 @@ public enum eGame {
 	TexasHoldEm(4),
 	Omaha(5),
 	DeucesWild(6),
-	AcesAndEights(7);
+	AcesAndEights(7),
+	SevenDraw(8);
 	
 	private int gameNbr;
 

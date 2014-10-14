@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.UUID;
+
 import javax.xml.bind.annotation.XmlElement;
+
+import pokerEnums.eCardNo;
+import pokerEnums.eHandStrength;
+import pokerEnums.eRank;
 
 public class Hand {
 	private UUID playerID;
@@ -149,6 +154,11 @@ public class Hand {
 	public int getHandStrength() {
 		return HandStrength;
 	}
+
+//	public String getHandStrengthText()
+//	{
+//		eHandStrength eHS;
+//	}
 
 	public int getNatural() {
 		return Natural;
