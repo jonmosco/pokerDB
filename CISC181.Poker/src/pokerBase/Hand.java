@@ -35,24 +35,30 @@ public class Hand {
 	private boolean Ace;
 	private static Deck dJoker = new Deck();
 
-	public Hand()
-	{
-		
+	public Hand() {
+
 	}
-	public void  AddCardToHand(Card c)
-	{
-		if (this.CardsInHand == null)
-		{
+
+	public Hand(ArrayList<Card> setCards) {
+		this.CardsInHand = setCards;
+	}
+
+	public Hand(ArrayList<Card> setCards, boolean testing) {
+		this.CardsInHand = setCards;
+		HandleJokerWilds();
+	}
+
+	public void AddCardToHand(Card c) {
+		if (this.CardsInHand == null) {
 			CardsInHand = new ArrayList<Card>();
 		}
 		this.CardsInHand.add(c);
 	}
-	
-	public Card  GetCardFromHand(int location)
-	{
+
+	public Card GetCardFromHand(int location) {
 		return CardsInHand.get(location);
 	}
-	
+
 	public Hand(Deck d) {
 		ArrayList<Card> Import = new ArrayList<Card>();
 		for (int x = 0; x < 5; x++) {
@@ -80,7 +86,7 @@ public class Hand {
 		}
 
 		System.out.println("Possible Hands:" + PlayersHand.size());
-		
+
 		// Sort the array of generated hands, seeking the best hand
 		Collections.sort(PlayersHand, Hand.HandRank);
 
@@ -105,8 +111,7 @@ public class Hand {
 		for (Hand h : inHands) {
 			ArrayList<Card> c = h.getCards();
 			if (c.get(SubCardNo).getRank().getRank() == eRank.JOKER.getRank()
-					|| c.get(SubCardNo).getWild() == true)
-			{
+					|| c.get(SubCardNo).getWild() == true) {
 
 				for (Card JokerSub : dJoker.getCards()) {
 					ArrayList<Card> SubCards = new ArrayList<Card>();
@@ -127,10 +132,6 @@ public class Hand {
 		return SubHands;
 	}
 
-	public Hand(ArrayList<Card> setCards) {
-		this.CardsInHand = setCards;
-	}
-
 	public ArrayList<Card> getCards() {
 		return CardsInHand;
 	}
@@ -139,14 +140,14 @@ public class Hand {
 		return BestCardsInHand;
 	}
 
-	public void setPlayerID(UUID playerID)
-	{
+	public void setPlayerID(UUID playerID) {
 		this.playerID = playerID;
 	}
-	public UUID getPlayerID()
-	{
+
+	public UUID getPlayerID() {
 		return playerID;
 	}
+
 	public void setBestHand(ArrayList<Card> BestHand) {
 		this.BestCardsInHand = BestHand;
 	}
@@ -155,10 +156,10 @@ public class Hand {
 		return HandStrength;
 	}
 
-//	public String getHandStrengthText()
-//	{
-//		eHandStrength eHS;
-//	}
+	// public String getHandStrengthText()
+	// {
+	// eHandStrength eHS;
+	// }
 
 	public int getNatural() {
 		return Natural;
@@ -181,7 +182,7 @@ public class Hand {
 	}
 
 	public static Hand EvalHand(ArrayList<Card> SeededHand) {
-		
+
 		Deck d = new Deck();
 		Hand h = new Hand(d);
 		h.CardsInHand = SeededHand;
@@ -216,17 +217,8 @@ public class Hand {
 			Flush = false;
 		}
 
-		// five of a Kind
-
-		if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
-				.get(eCardNo.FifthCard.getCardNo()).getRank()) {
-			ScoreHand(eHandStrength.FiveOfAKind,
-					CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
-							.getRank(), 0, 0);
-		}
-
 		// Straight Evaluation
-		else if (Ace) {
+		if (Ace) {
 			// Looks for Ace, King, Queen, Jack, 10
 			if (CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() == eRank.KING
 					&& CardsInHand.get(eCardNo.ThirdCard.getCardNo()).getRank() == eRank.QUEEN
@@ -264,8 +256,17 @@ public class Hand {
 			Straight = false;
 		}
 
+		// five of a Kind
+
+		if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
+				.get(eCardNo.FifthCard.getCardNo()).getRank()) {
+			ScoreHand(eHandStrength.FiveOfAKind,
+					CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
+							.getRank(), 0, 0);
+		}
+
 		// Evaluates the hand type
-		if (Straight == true
+		else if (Straight == true
 				&& Flush == true
 				&& CardsInHand.get(eCardNo.FifthCard.getCardNo()).getRank() == eRank.TEN
 				&& Ace) {
